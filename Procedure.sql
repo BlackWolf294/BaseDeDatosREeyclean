@@ -8,15 +8,32 @@ Nombre_Guia,
 Documento,
 Multimedia);
 
-create PROCEDURE Insertar_Noticia(IN Nombre_Noticia varchar(50), IN Documento text, IN Multimedia blob)
+create PROCEDURE Insertar_Noticia(IN Nombre_Noticia varchar(50), IN Documento text, IN Multimedia blob, in Referencia Varchar(200), IN Usuario int)
 insert into Noticias(
 NotNombreNoticia,
 NotDocumento,
-NotMultimedia
+NotMultimedia,
+NotUsuario,
+NotReferencia
 )values(
 Nombre_Noticia,
 Documento,
-Multimedia);
+Usuario,
+Multimedia,
+Referencia);
 	
+create PROCEDURE Insertar_Usuario(In tipo_doc enum("CC","CE","TI"), In Numero_Doc varchar(10), in ciudad enum("Santander","Puerto Tejada"))    
+insert into usuario(
+UsNombre,
+UsTipoDoc,
+UsNumDoc,
+UsCiudad
+)values(
+current_user(),
+tipo_doc,
+Numero_Doc,
+ciudad
+);
+
 drop procedure Insertar_Guia;
 drop procedure Insertar_Noticia;
